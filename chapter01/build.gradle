@@ -1,0 +1,30 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+}
+
+group 'com.programming'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+/**
+ * 코틀린 파일과 자바 파일이 같은 패키지에 있다면 (같은 목록상 있다면)
+ * 코틀린에서 자바의 내용을 불러올 때 찾을 수 없다고 나온다.
+ * 이런 현상을 해결하기 위한 방법.
+ */
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
